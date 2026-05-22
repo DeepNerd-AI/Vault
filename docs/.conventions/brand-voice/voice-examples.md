@@ -217,9 +217,9 @@ It was built by [FACT: the team behind Atom and Tree-sitter].
 | ------------------ | ------------------------------------------ |
 | Technical specs    | "120fps", "8ms latency", "Rust"            |
 | Proper nouns       | "Tree-sitter", "Anthropic", "Claude"       |
-| Version numbers    | "Vault 1.0", "v0.150"                        |
+| Version numbers    | "Vault 1.0", "v0.150"                      |
 | Keyboard shortcuts | "cmd+shift+c", "ctrl+\`"                   |
-| URLs               | "deepnerd.tech/releases"                         |
+| URLs               | "deepnerd.tech/releases"                   |
 | Attribution        | "built by the team behind Atom"            |
 | Dates              | "available today", "released January 2024" |
 | Quotes             | Any attributed quotation                   |

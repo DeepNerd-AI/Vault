@@ -288,9 +288,9 @@ Claude Agent runs Claude Code under the hood, which reads its standard configura
 | `~/.claude/` directory              | Yes — Claude Code reads its own settings and memory               |
 | CLAUDE.md files                     | Yes — Claude Code reads these directly from the project           |
 | Skills                              | Yes — exposed via the Claude Agent SDK                            |
-| MCP servers from Claude Code config | Yes — but Vault also forwards its own MCP servers via ACP           |
+| MCP servers from Claude Code config | Yes — but Vault also forwards its own MCP servers via ACP         |
 | Hooks                               | No — [not supported](https://code.claude.com/docs/en/hooks-guide) |
-| Authentication                      | Separate — you must authenticate via `/login` in Vault              |
+| Authentication                      | Separate — you must authenticate via `/login` in Vault            |
 
 > **Why separate authentication?** Vault isolates Claude Agent authentication to give you control over which account and billing method you use.
 
@@ -298,12 +298,12 @@ Claude Agent runs Claude Code under the hood, which reads its standard configura
 
 Codex runs the Codex CLI under the hood, which reads its standard configuration:
 
-| Config                        | Read by Codex?                                  |
-| ----------------------------- | ----------------------------------------------- |
-| `~/.codex/config.toml`        | Yes — Codex CLI reads its own config            |
+| Config                        | Read by Codex?                                    |
+| ----------------------------- | ------------------------------------------------- |
+| `~/.codex/config.toml`        | Yes — Codex CLI reads its own config              |
 | MCP servers from Codex config | Yes — but Vault also forwards its own MCP servers |
-| `CODEX_API_KEY` env var       | Yes — inherited from your shell environment     |
-| `OPENAI_API_KEY` env var      | Yes — inherited from your shell environment     |
+| `CODEX_API_KEY` env var       | Yes — inherited from your shell environment       |
+| `OPENAI_API_KEY` env var      | Yes — inherited from your shell environment       |
 | ChatGPT OAuth login           | Separate — you must re-authenticate in Vault      |
 
 You can also pass environment variables through Vault settings:

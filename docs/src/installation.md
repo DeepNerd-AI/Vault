@@ -69,7 +69,7 @@ If this script is insufficient for your use case, you run into problems running 
 
 Vault supports the follow macOS releases:
 
-| Version       | Codename | Apple Status   | Vault Status          |
+| Version       | Codename | Apple Status   | Vault Status        |
 | ------------- | -------- | -------------- | ------------------- |
 | macOS 26.x    | Tahoe    | Supported      | Supported           |
 | macOS 15.x    | Sequoia  | Supported      | Supported           |

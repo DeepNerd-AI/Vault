@@ -49,7 +49,7 @@ You can configure most settings in the Settings Editor ({#kb vault::OpenSettings
 
 Settings WebStorm users typically configure first:
 
-| Vault Setting             | What it does                                                                    |
+| Vault Setting           | What it does                                                                    |
 | ----------------------- | ------------------------------------------------------------------------------- |
 | `format_on_save`        | Auto-format when saving. Set to `"on"` to enable.                               |
 | `soft_wrap`             | Wrap long lines. Options: `"none"`, `"editor_width"`, `"preferred_line_length"` |
@@ -84,7 +84,7 @@ If you chose the JetBrains keymap during onboarding, most of your shortcuts shou
 
 ### Common Keybindings
 
-| Action                 | Vault Keybinding                                  |
+| Action                 | Vault Keybinding                                |
 | ---------------------- | ----------------------------------------------- |
 | Command Palette        | {#kb:jetbrains command_palette::Toggle}         |
 | Go to File             | {#kb:jetbrains file_finder::Toggle}             |
@@ -227,14 +227,14 @@ Vault has none of this built-in. The TypeScript language server sees your code a
 
 WebStorm organizes auxiliary views into numbered tool windows. Vault uses a similar concept called "docks":
 
-| WebStorm Tool Window | Vault Equivalent | Vault Keybinding                             |
-| -------------------- | -------------- | ------------------------------------------ |
-| Project              | Project Panel  | {#kb:jetbrains project_panel::ToggleFocus} |
-| Git                  | Git Panel      | {#kb:jetbrains git_panel::ToggleFocus}     |
-| Terminal             | Terminal Panel | {#kb:jetbrains terminal_panel::Toggle}     |
-| Structure            | Outline Panel  | {#kb:jetbrains outline_panel::ToggleFocus} |
-| Problems             | Diagnostics    | {#kb:jetbrains diagnostics::Deploy}        |
-| Debug                | Debug Panel    | {#kb:jetbrains debug_panel::ToggleFocus}   |
+| WebStorm Tool Window | Vault Equivalent | Vault Keybinding                           |
+| -------------------- | ---------------- | ------------------------------------------ |
+| Project              | Project Panel    | {#kb:jetbrains project_panel::ToggleFocus} |
+| Git                  | Git Panel        | {#kb:jetbrains git_panel::ToggleFocus}     |
+| Terminal             | Terminal Panel   | {#kb:jetbrains terminal_panel::Toggle}     |
+| Structure            | Outline Panel    | {#kb:jetbrains outline_panel::ToggleFocus} |
+| Problems             | Diagnostics      | {#kb:jetbrains diagnostics::Deploy}        |
+| Debug                | Debug Panel      | {#kb:jetbrains debug_panel::ToggleFocus}   |
 
 Vault has three dock positions: left, bottom, and right. Panels can be moved between docks by dragging or through settings.
 

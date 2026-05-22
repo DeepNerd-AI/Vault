@@ -49,7 +49,7 @@ You can configure most settings in the Settings Editor ({#kb vault::OpenSettings
 
 Settings RustRover users typically configure first:
 
-| Vault Setting             | What it does                                                                    |
+| Vault Setting           | What it does                                                                    |
 | ----------------------- | ------------------------------------------------------------------------------- |
 | `format_on_save`        | Auto-format when saving. Set to `"on"` to enable (uses rustfmt by default).     |
 | `soft_wrap`             | Wrap long lines. Options: `"none"`, `"editor_width"`, `"preferred_line_length"` |
@@ -119,7 +119,7 @@ If you chose the JetBrains keymap during onboarding, most of your shortcuts shou
 
 ### Different Keybindings (RustRover → Vault)
 
-| Action                 | RustRover   | Vault (JetBrains keymap)   |
+| Action                 | RustRover   | Vault (JetBrains keymap) |
 | ---------------------- | ----------- | ------------------------ |
 | File Structure         | `Cmd + F12` | `Cmd + F12` (outline)    |
 | Navigate to Next Error | `F2`        | `F2`                     |
@@ -234,13 +234,13 @@ Vault doesn't have a Cargo GUI. You work with Cargo through:
 RustRover organizes auxiliary views into numbered tool windows (Project = 1, Cargo = Alt+1, Terminal = Alt+F12, etc.). Vault uses a similar concept called "docks":
 
 | RustRover Tool Window | Vault Equivalent | Shortcut (JetBrains keymap) |
-| --------------------- | -------------- | --------------------------- |
-| Project (1)           | Project Panel  | `Cmd + 1`                   |
-| Git (9 or Cmd+0)      | Git Panel      | `Cmd + 0`                   |
-| Terminal (Alt+F12)    | Terminal Panel | `Alt + F12`                 |
-| Structure (7)         | Outline Panel  | `Cmd + 7`                   |
-| Problems (6)          | Diagnostics    | `Cmd + 6`                   |
-| Debug (5)             | Debug Panel    | `Cmd + 5`                   |
+| --------------------- | ---------------- | --------------------------- |
+| Project (1)           | Project Panel    | `Cmd + 1`                   |
+| Git (9 or Cmd+0)      | Git Panel        | `Cmd + 0`                   |
+| Terminal (Alt+F12)    | Terminal Panel   | `Alt + F12`                 |
+| Structure (7)         | Outline Panel    | `Cmd + 7`                   |
+| Problems (6)          | Diagnostics      | `Cmd + 6`                   |
+| Debug (5)             | Debug Panel      | `Cmd + 5`                   |
 
 Vault has three dock positions: left, bottom, and right. Panels can be moved between docks by dragging or through settings.
 
