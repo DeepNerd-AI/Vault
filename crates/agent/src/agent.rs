@@ -129,7 +129,11 @@ impl LanguageModels {
             .filter(|provider| provider.is_authenticated(cx))
             .collect::<Vec<_>>();
         if providers.is_empty() {
-            providers = LanguageModelRegistry::global(cx).read(cx).visible_providers().into_iter().collect();
+            providers = LanguageModelRegistry::global(cx)
+                .read(cx)
+                .visible_providers()
+                .into_iter()
+                .collect();
         }
 
         let mut language_model_list = IndexMap::default();
@@ -852,7 +856,8 @@ impl NativeAgent {
         let mut commands = Vec::new();
         commands.push(acp::AvailableCommand::new(
             "init".to_string(),
-            "Initialize Vault settings, configuration files, and workspace environment.".to_string(),
+            "Initialize Vault settings, configuration files, and workspace environment."
+                .to_string(),
         ));
 
         let Some(state) = project_state else {
@@ -1261,18 +1266,18 @@ impl NativeAgent {
             let worktrees = project.read_with(cx, |p, cx| p.worktrees(cx).collect::<Vec<_>>());
             let mut init_message = String::new();
             init_message.push_str("### 🛡️ Vault IDE Workspace Initialized!\n\n");
-            
+
             let mut initialized_count = 0;
             for worktree in worktrees {
                 let root_path = worktree.read_with(cx, |w, _| w.abs_path().to_path_buf());
                 let vault_dir = root_path.join(".vault");
                 let settings_path = vault_dir.join("settings.json");
-                
+
                 if let Err(e) = std::fs::create_dir_all(&vault_dir) {
                     log::error!("Failed to create .vault directory: {:?}", e);
                     continue;
                 }
-                
+
                 let settings_content = serde_json::json!({
                     "editor": {
                         "hover_popover_enabled": true,
@@ -1286,7 +1291,7 @@ impl NativeAgent {
                         "hover_popover_enabled": true
                     }
                 });
-                
+
                 if let Ok(content_str) = serde_json::to_string_pretty(&settings_content) {
                     if std::fs::write(&settings_path, content_str).is_ok() {
                         init_message.push_str(&format!(
@@ -1710,12 +1715,7 @@ impl acp_thread::AgentConnection for NativeAgentConnection {
         if let Some(parsed_command) = Command::parse(&params.prompt) {
             if parsed_command.prompt_name == "init" {
                 return self.0.update(cx, |agent, cx| {
-                    agent.send_init_prompt(
-                        id,
-                        session_id.clone(),
-                        params.prompt,
-                        cx,
-                    )
+                    agent.send_init_prompt(id, session_id.clone(), params.prompt, cx)
                 });
             }
 

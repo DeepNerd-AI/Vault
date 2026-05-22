@@ -2600,7 +2600,7 @@ impl AgentPanel {
         self.active_thread_view(cx).and_then(|thread_view| {
             let thread = thread_view.read(cx).thread.read(cx);
             let entries = thread.entries();
-            
+
             // Check if we have active chat history
             let mut history_text = String::new();
             if !entries.is_empty() {
@@ -2611,7 +2611,7 @@ impl AgentPanel {
                 }
                 history_text.push_str("[System Note: End of transferred conversation history. You can now continue assisting the user from this state.]\n\n");
             }
-            
+
             // Get any draft/editor text
             let draft_blocks = thread.draft_prompt().map(|draft| draft.to_vec());
             let editor_text = {
@@ -2622,7 +2622,7 @@ impl AgentPanel {
                     Some(text)
                 }
             };
-            
+
             // Combine history and draft/editor text
             if !history_text.is_empty() {
                 let mut blocks = vec![acp::ContentBlock::Text(acp::TextContent::new(history_text))];
@@ -2631,7 +2631,7 @@ impl AgentPanel {
                 } else if let Some(text) = editor_text {
                     blocks.push(acp::ContentBlock::Text(acp::TextContent::new(text)));
                 }
-                
+
                 Some(AgentInitialContent::ContentBlock {
                     blocks,
                     auto_submit: false,

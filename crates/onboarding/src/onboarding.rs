@@ -30,8 +30,8 @@ use workspace::{
 };
 use zed_actions::OpenOnboarding;
 
-mod base_keymap_picker;
 mod ai_provider_setup;
+mod base_keymap_picker;
 mod basics_page;
 pub mod multibuffer_hint;
 mod theme_preview;

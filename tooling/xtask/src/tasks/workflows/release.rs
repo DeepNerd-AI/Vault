@@ -1,4 +1,6 @@
-use gh_workflow::{Event, Expression, Level, Permissions, Push, Run, Step, Use, Workflow, ctx::Context};
+use gh_workflow::{
+    Event, Expression, Level, Permissions, Push, Run, Step, Use, Workflow, ctx::Context,
+};
 use indoc::formatdoc;
 
 use crate::tasks::workflows::{

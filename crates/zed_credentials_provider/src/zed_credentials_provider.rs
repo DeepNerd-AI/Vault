@@ -162,7 +162,10 @@ impl CredentialsProvider for DevelopmentCredentialsProvider {
             let mut credentials = match self.load_credentials() {
                 Ok(map) => map,
                 Err(err) => {
-                    eprintln!("Development credentials load failed, starting fresh: {:#}", err);
+                    eprintln!(
+                        "Development credentials load failed, starting fresh: {:#}",
+                        err
+                    );
                     HashMap::default()
                 }
             };

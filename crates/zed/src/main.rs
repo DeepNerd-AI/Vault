@@ -1494,8 +1494,7 @@ pub(crate) async fn restore_or_create_workspace(
             })
             .await?;
         }
-    } else if matches!(kvp.read_kvp(FIRST_OPEN), Ok(None)) && !has_any_configured_ai_key(cx).await
-    {
+    } else if matches!(kvp.read_kvp(FIRST_OPEN), Ok(None)) && !has_any_configured_ai_key(cx).await {
         cx.update(|cx| show_onboarding_view(app_state, cx)).await?;
     } else {
         cx.update(|cx| {

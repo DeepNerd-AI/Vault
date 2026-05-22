@@ -1,9 +1,9 @@
 use anyhow::Result;
 use gpui::{Action, App, AsyncApp, Context, Entity, IntoElement, Render, Task, Window};
 use reqwest::StatusCode;
-use settings::{update_settings_file, SaturatingBool};
-use ui::prelude::*;
+use settings::{SaturatingBool, update_settings_file};
 use ui::SwitchField;
+use ui::prelude::*;
 use ui_input::InputField;
 
 use crate::Finish;
@@ -208,30 +208,39 @@ impl AiProviderSetup {
             .child(
                 h_flex()
                     .justify_between()
+                    .child(Label::new(provider_name).size(LabelSize::Default).color(
+                        if card_disabled {
+                            Color::Muted
+                        } else {
+                            Color::Default
+                        },
+                    ))
                     .child(
-                        Label::new(provider_name)
-                            .size(LabelSize::Default)
-                            .color(if card_disabled { Color::Muted } else { Color::Default })
-                    )
-                    .child(
-                        Label::new(if card_disabled { "Disabled" } else if status.is_verified { "Verified" } else { "Not verified" })
-                            .size(LabelSize::Small)
-                            .color(if card_disabled {
-                                Color::Muted
-                            } else if status.is_verified {
-                                Color::Success
-                            } else {
-                                Color::Muted
-                            }),
+                        Label::new(if card_disabled {
+                            "Disabled"
+                        } else if status.is_verified {
+                            "Verified"
+                        } else {
+                            "Not verified"
+                        })
+                        .size(LabelSize::Small)
+                        .color(if card_disabled {
+                            Color::Muted
+                        } else if status.is_verified {
+                            Color::Success
+                        } else {
+                            Color::Muted
+                        }),
                     ),
             )
             .when_some(key_field, |this, key_field| {
                 if card_disabled {
                     this.child(
-                        h_flex()
-                            .h(rems(2.))
-                            .items_center()
-                            .child(Label::new("AI features are disabled").color(Color::Muted).size(LabelSize::Small))
+                        h_flex().h(rems(2.)).items_center().child(
+                            Label::new("AI features are disabled")
+                                .color(Color::Muted)
+                                .size(LabelSize::Small),
+                        ),
                     )
                 } else {
                     this.child(key_field)
@@ -422,90 +431,91 @@ pub async fn has_any_configured_ai_key_async(cx: &mut AsyncApp) -> bool {
 }
 
 async fn test_provider(provider: ProviderId, api_key: Option<String>) -> Result<(), String> {
-    reqwest_client::runtime().spawn(async move {
-        let client = reqwest::Client::new();
-        match provider {
-            ProviderId::Anthropic => {
-                let key = api_key.ok_or_else(|| "Missing Anthropic API key".to_string())?;
-                let response = client
-                    .post("https://api.anthropic.com/v1/messages")
-                    .header("x-api-key", key)
-                    .header("anthropic-version", "2023-06-01")
-                    .header("content-type", "application/json")
-                    .body(
-                        serde_json::to_vec(&serde_json::json!({
-                            "model": "claude-3-5-haiku-latest",
-                            "max_tokens": 1,
-                            "messages": [{"role": "user", "content": "ping"}]
-                        }))
-                        .map_err(|err| err.to_string())?,
-                    )
-                    .send()
-                    .await
-                    .map_err(|err| err.to_string())?;
-                if response.status() == StatusCode::OK {
-                    Ok(())
-                } else {
-                    Err(format!("Anthropic test failed: HTTP {}", response.status()))
+    reqwest_client::runtime()
+        .spawn(async move {
+            let client = reqwest::Client::new();
+            match provider {
+                ProviderId::Anthropic => {
+                    let key = api_key.ok_or_else(|| "Missing Anthropic API key".to_string())?;
+                    let response = client
+                        .post("https://api.anthropic.com/v1/messages")
+                        .header("x-api-key", key)
+                        .header("anthropic-version", "2023-06-01")
+                        .header("content-type", "application/json")
+                        .body(
+                            serde_json::to_vec(&serde_json::json!({
+                                "model": "claude-3-5-haiku-latest",
+                                "max_tokens": 1,
+                                "messages": [{"role": "user", "content": "ping"}]
+                            }))
+                            .map_err(|err| err.to_string())?,
+                        )
+                        .send()
+                        .await
+                        .map_err(|err| err.to_string())?;
+                    if response.status() == StatusCode::OK {
+                        Ok(())
+                    } else {
+                        Err(format!("Anthropic test failed: HTTP {}", response.status()))
+                    }
+                }
+                ProviderId::OpenAi => {
+                    let key = api_key.ok_or_else(|| "Missing OpenAI API key".to_string())?;
+                    let response = client
+                        .get("https://api.openai.com/v1/models")
+                        .bearer_auth(key)
+                        .send()
+                        .await
+                        .map_err(|err| err.to_string())?;
+                    if response.status() == StatusCode::OK {
+                        Ok(())
+                    } else {
+                        Err(format!("OpenAI test failed: HTTP {}", response.status()))
+                    }
+                }
+                ProviderId::Gemini => {
+                    let key = api_key.ok_or_else(|| "Missing Gemini API key".to_string())?;
+                    let response = client
+                        .get(format!(
+                            "https://generativelanguage.googleapis.com/v1beta/models?key={key}"
+                        ))
+                        .send()
+                        .await
+                        .map_err(|err| err.to_string())?;
+                    if response.status() == StatusCode::OK {
+                        Ok(())
+                    } else {
+                        Err(format!("Gemini test failed: HTTP {}", response.status()))
+                    }
+                }
+                ProviderId::Groq => {
+                    let key = api_key.ok_or_else(|| "Missing Groq API key".to_string())?;
+                    let response = client
+                        .get("https://api.groq.com/openai/v1/models")
+                        .bearer_auth(key)
+                        .send()
+                        .await
+                        .map_err(|err| err.to_string())?;
+                    if response.status() == StatusCode::OK {
+                        Ok(())
+                    } else {
+                        Err(format!("Groq test failed: HTTP {}", response.status()))
+                    }
+                }
+                ProviderId::Ollama => {
+                    let response = client
+                        .get("http://localhost:11434/api/tags")
+                        .send()
+                        .await
+                        .map_err(|err| err.to_string())?;
+                    if response.status() == StatusCode::OK {
+                        Ok(())
+                    } else {
+                        Err(format!("Ollama is offline: HTTP {}", response.status()))
+                    }
                 }
             }
-            ProviderId::OpenAi => {
-                let key = api_key.ok_or_else(|| "Missing OpenAI API key".to_string())?;
-                let response = client
-                    .get("https://api.openai.com/v1/models")
-                    .bearer_auth(key)
-                    .send()
-                    .await
-                    .map_err(|err| err.to_string())?;
-                if response.status() == StatusCode::OK {
-                    Ok(())
-                } else {
-                    Err(format!("OpenAI test failed: HTTP {}", response.status()))
-                }
-            }
-            ProviderId::Gemini => {
-                let key = api_key.ok_or_else(|| "Missing Gemini API key".to_string())?;
-                let response = client
-                    .get(format!(
-                        "https://generativelanguage.googleapis.com/v1beta/models?key={key}"
-                    ))
-                    .send()
-                    .await
-                    .map_err(|err| err.to_string())?;
-                if response.status() == StatusCode::OK {
-                    Ok(())
-                } else {
-                    Err(format!("Gemini test failed: HTTP {}", response.status()))
-                }
-            }
-            ProviderId::Groq => {
-                let key = api_key.ok_or_else(|| "Missing Groq API key".to_string())?;
-                let response = client
-                    .get("https://api.groq.com/openai/v1/models")
-                    .bearer_auth(key)
-                    .send()
-                    .await
-                    .map_err(|err| err.to_string())?;
-                if response.status() == StatusCode::OK {
-                    Ok(())
-                } else {
-                    Err(format!("Groq test failed: HTTP {}", response.status()))
-                }
-            }
-            ProviderId::Ollama => {
-                let response = client
-                    .get("http://localhost:11434/api/tags")
-                    .send()
-                    .await
-                    .map_err(|err| err.to_string())?;
-                if response.status() == StatusCode::OK {
-                    Ok(())
-                } else {
-                    Err(format!("Ollama is offline: HTTP {}", response.status()))
-                }
-            }
-        }
-    })
-    .await
-    .map_err(|err| format!("Task panicked: {}", err))?
+        })
+        .await
+        .map_err(|err| format!("Task panicked: {}", err))?
 }
