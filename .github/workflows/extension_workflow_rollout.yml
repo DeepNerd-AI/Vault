@@ -17,7 +17,7 @@ on:
 jobs:
   fetch_extension_repos:
     if: (github.repository_owner == 'zed-industries' || github.repository_owner == 'zed-extensions' || github.repository_owner == 'DeepNerd-AI') && github.ref == 'refs/heads/main'
-    runs-on: namespace-profile-2x4-ubuntu-2404
+    runs-on: ubuntu-latest
     steps:
     - name: checkout_zed_repo
       uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd
@@ -106,7 +106,7 @@ jobs:
     needs:
     - fetch_extension_repos
     if: needs.fetch_extension_repos.outputs.repos != '[]'
-    runs-on: namespace-profile-2x4-ubuntu-2404
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         repo: ${{ fromJson(needs.fetch_extension_repos.outputs.repos) }}
@@ -205,7 +205,7 @@ jobs:
     needs:
     - rollout_workflows_to_extension
     if: inputs.filter-repos == ''
-    runs-on: namespace-profile-2x4-ubuntu-2404
+    runs-on: ubuntu-latest
     steps:
     - id: generate-token
       name: steps::generate_token

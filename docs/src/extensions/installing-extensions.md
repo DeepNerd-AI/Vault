@@ -1,19 +1,19 @@
 ---
 title: Installing Extensions
-description: "Browse, install, and manage extensions from the Zed Extension Gallery."
+description: "Browse, install, and manage extensions from the Vault Extension Gallery."
 ---
 
 # Installing Extensions {#installing-extensions}
 
-Extensions add functionality to Zed, including languages, themes, and AI tools. Browse and install them from the Extension Gallery.
+Extensions add functionality to Vault, including languages, themes, and AI tools. Browse and install them from the Extension Gallery.
 
-Open the Extension Gallery with {#kb zed::Extensions}, or select "Zed > Extensions" from the menu bar.
+Open the Extension Gallery with {#kb vault::Extensions}, or select "Vault > Extensions" from the menu bar.
 
 ## Installation Location
 
-- On macOS, extensions are installed in `~/Library/Application Support/Zed/extensions`.
-- On Linux, they are installed in either `$XDG_DATA_HOME/zed/extensions` or `~/.local/share/zed/extensions`.
-- On Windows, the directory is `%LOCALAPPDATA%\Zed\extensions`.
+- On macOS, extensions are installed in `~/Library/Application Support/Vault/extensions`.
+- On Linux, they are installed in either `$XDG_DATA_HOME/vault/extensions` or `~/.local/share/vault/extensions`.
+- On Windows, the directory is `%LOCALAPPDATA%\Vault\extensions`.
 
 This directory contains two subdirectories:
 

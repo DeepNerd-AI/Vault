@@ -1,6 +1,6 @@
 ---
 title: MCP Server Extensions
-description: "MCP Server Extensions for Zed extensions."
+description: "MCP Server Extensions for Vault extensions."
 ---
 
 # MCP Server Extensions
@@ -19,13 +19,13 @@ Each MCP server must be registered in the `extension.toml`:
 Then, in the Rust code for your extension, implement the `context_server_command` method on your extension:
 
 ```rust
-impl zed::Extension for MyExtension {
+impl vault::Extension for MyExtension {
     fn context_server_command(
         &mut self,
         context_server_id: &ContextServerId,
-        project: &zed::Project,
-    ) -> Result<zed::Command> {
-        Ok(zed::Command {
+        project: &vault::Project,
+    ) -> Result<vault::Command> {
+        Ok(vault::Command {
             command: get_path_to_context_server_executable()?,
             args: get_args_for_context_server()?,
             env: get_env_for_context_server()?,
@@ -40,7 +40,7 @@ If you need to download the MCP server from an external source (GitHub Releases,
 
 ## Available Extensions
 
-See MCP servers published as extensions [on Zed's site](https://zed.dev/extensions?filter=context-servers).
+See MCP servers published as extensions [on Vault's site](https://deepnerd.tech/extensions?filter=context-servers).
 
 Review their repositories to see common implementation patterns and structure.
 

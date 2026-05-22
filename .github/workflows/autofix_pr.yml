@@ -15,7 +15,7 @@ on:
         default: 'true'
 jobs:
   run_autofix:
-    runs-on: namespace-profile-16x32-ubuntu-2204
+    runs-on: ubuntu-latest
     env:
       CC: clang
       CXX: clang++
@@ -91,7 +91,7 @@ jobs:
     needs:
     - run_autofix
     if: needs.run_autofix.outputs.has_changes == 'true'
-    runs-on: namespace-profile-2x4-ubuntu-2404
+    runs-on: ubuntu-latest
     steps:
     - id: generate-token
       name: steps::authenticate_as_zippy

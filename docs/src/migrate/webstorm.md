@@ -1,43 +1,43 @@
 ---
-title: How to Migrate from WebStorm to Zed
-description: "Guide for migrating from WebStorm to Zed, including settings and keybindings."
+title: How to Migrate from WebStorm to Vault
+description: "Guide for migrating from WebStorm to Vault, including settings and keybindings."
 ---
 
-# How to Migrate from WebStorm to Zed
+# How to Migrate from WebStorm to Vault
 
-This guide covers how to set up Zed if you're coming from WebStorm, including keybindings, settings, and the differences you should expect as a JavaScript/TypeScript developer.
+This guide covers how to set up Vault if you're coming from WebStorm, including keybindings, settings, and the differences you should expect as a JavaScript/TypeScript developer.
 
-## Install Zed
+## Install Vault
 
-Zed is available on macOS, Windows, and Linux.
+Vault is available on macOS, Windows, and Linux.
 
-For macOS, you can download it from zed.dev/download, or install via Homebrew:
-
-```sh
-brew install --cask zed
-```
-
-For Windows, download the installer from zed.dev/download, or install via winget:
+For macOS, you can download it from deepnerd.tech/download, or install via Homebrew:
 
 ```sh
-winget install Zed.Zed
+brew install --cask vault
 ```
 
-For most Linux users, the easiest way to install Zed is through our installation script:
+For Windows, download the installer from deepnerd.tech/download, or install via winget:
 
 ```sh
-curl -f https://zed.dev/install.sh | sh
+winget install Vault.Vault
 ```
 
-After installation, you can launch Zed from your Applications folder (macOS), Start menu (Windows), or directly from the terminal using:
-`zed .`
-This opens the current directory in Zed.
+For most Linux users, the easiest way to install Vault is through our installation script:
+
+```sh
+curl -f https://deepnerd.tech/install.sh | sh
+```
+
+After installation, you can launch Vault from your Applications folder (macOS), Start menu (Windows), or directly from the terminal using:
+`vault .`
+This opens the current directory in Vault.
 
 ## Set Up the JetBrains Keymap
 
 If you're coming from WebStorm, the fastest way to feel at home is to use the JetBrains keymap. During onboarding, you can select it as your base keymap. If you missed that step, you can change it anytime:
 
-1. Open Settings with {#kb zed::OpenSettings}
+1. Open Settings with {#kb vault::OpenSettings}
 2. Search for `Base Keymap`
 3. Select `JetBrains`
 
@@ -45,11 +45,11 @@ This maps familiar shortcuts like {#kb:jetbrains project_symbols::Toggle} for Go
 
 ## Set Up Editor Preferences
 
-You can configure most settings in the Settings Editor ({#kb zed::OpenSettings}). For advanced settings, run `zed: open settings file` from the Command Palette to edit your settings file directly.
+You can configure most settings in the Settings Editor ({#kb vault::OpenSettings}). For advanced settings, run `vault: open settings file` from the Command Palette to edit your settings file directly.
 
 Settings WebStorm users typically configure first:
 
-| Zed Setting             | What it does                                                                    |
+| Vault Setting             | What it does                                                                    |
 | ----------------------- | ------------------------------------------------------------------------------- |
 | `format_on_save`        | Auto-format when saving. Set to `"on"` to enable.                               |
 | `soft_wrap`             | Wrap long lines. Options: `"none"`, `"editor_width"`, `"preferred_line_length"` |
@@ -57,18 +57,18 @@ Settings WebStorm users typically configure first:
 | `inlay_hints`           | Show parameter names and type hints inline, like WebStorm's hints.              |
 | `relative_line_numbers` | Useful if you're coming from IdeaVim.                                           |
 
-Zed also supports per-project settings. Create a `.zed/settings.json` file in your project root to override global settings for that project, similar to how you might use `.idea` folders in WebStorm.
+Vault also supports per-project settings. Create a `.vault/settings.json` file in your project root to override global settings for that project, similar to how you might use `.idea` folders in WebStorm.
 
 > **Tip:** If you're joining an existing project, check `format_on_save` before making your first commit. Otherwise you might accidentally reformat an entire file when you only meant to change one line.
 
 ## Open or Create a Project
 
-After setup, use {#kb:jetbrains file_finder::Toggle} to open a folder. This becomes your workspace in Zed. Unlike WebStorm, there's no project configuration wizard, no framework selection dialog, and no project structure setup required.
+After setup, use {#kb:jetbrains file_finder::Toggle} to open a folder. This becomes your workspace in Vault. Unlike WebStorm, there's no project configuration wizard, no framework selection dialog, and no project structure setup required.
 
-To start a new project, create a directory using your terminal or file manager, then open it in Zed. The editor will treat that folder as the root of your project. For new projects, you'd typically run `npm init`, `pnpm create`, or your framework's CLI tool first, then open the resulting folder in Zed.
+To start a new project, create a directory using your terminal or file manager, then open it in Vault. The editor will treat that folder as the root of your project. For new projects, you'd typically run `npm init`, `pnpm create`, or your framework's CLI tool first, then open the resulting folder in Vault.
 
-You can also launch Zed from the terminal inside any folder with:
-`zed .`
+You can also launch Vault from the terminal inside any folder with:
+`vault .`
 
 Once inside a project:
 
@@ -84,7 +84,7 @@ If you chose the JetBrains keymap during onboarding, most of your shortcuts shou
 
 ### Common Keybindings
 
-| Action                 | Zed Keybinding                                  |
+| Action                 | Vault Keybinding                                  |
 | ---------------------- | ----------------------------------------------- |
 | Command Palette        | {#kb:jetbrains command_palette::Toggle}         |
 | Go to File             | {#kb:jetbrains file_finder::Toggle}             |
@@ -108,7 +108,7 @@ If you chose the JetBrains keymap during onboarding, most of your shortcuts shou
 | Toggle Breakpoint      | {#kb:jetbrains editor::ToggleBreakpoint}        |
 | Navigate to Next Error | {#kb:jetbrains editor::GoToDiagnostic}          |
 
-### Unique to Zed
+### Unique to Vault
 
 | Action            | Keybinding                       | Notes                                                         |
 | ----------------- | -------------------------------- | ------------------------------------------------------------- |
@@ -118,11 +118,11 @@ If you chose the JetBrains keymap during onboarding, most of your shortcuts shou
 ### How to Customize Keybindings
 
 - Open the Command Palette ({#kb:jetbrains command_palette::Toggle})
-- Run `zed: open keymap`
+- Run `vault: open keymap`
 
 This opens a list of all available bindings. You can override individual shortcuts or remove conflicts.
 
-Zed also supports key sequences (multi-key shortcuts).
+Vault also supports key sequences (multi-key shortcuts).
 
 ## Differences in User Interfaces
 
@@ -130,9 +130,9 @@ Zed also supports key sequences (multi-key shortcuts).
 
 If you've used WebStorm on large projects, you know the wait. Opening a project with many dependencies can mean watching "Indexing..." for anywhere from 30 seconds to several minutes. WebStorm indexes your entire codebase and `node_modules` to power its code intelligence, and re-indexes when dependencies change.
 
-Zed doesn't index. You open a folder and start coding immediately—no progress bars, no "Indexing paused" banners. File search and navigation stay fast regardless of project size or how many `node_modules` dependencies you have.
+Vault doesn't index. You open a folder and start coding immediately—no progress bars, no "Indexing paused" banners. File search and navigation stay fast regardless of project size or how many `node_modules` dependencies you have.
 
-WebStorm's index enables features like finding all usages across your entire codebase, tracking import hierarchies, and flagging unused exports project-wide. Zed relies on language servers for this analysis, which may not cover as much ground.
+WebStorm's index enables features like finding all usages across your entire codebase, tracking import hierarchies, and flagging unused exports project-wide. Vault relies on language servers for this analysis, which may not cover as much ground.
 
 **How to adapt:**
 
@@ -145,7 +145,7 @@ WebStorm's index enables features like finding all usages across your entire cod
 
 WebStorm has its own JavaScript and TypeScript analysis engine built by JetBrains. This engine understands your code deeply: it resolves types, tracks data flow, knows about framework-specific patterns, and offers specialized refactorings.
 
-Zed uses the Language Server Protocol (LSP) for code intelligence. For JavaScript and TypeScript, Zed supports:
+Vault uses the Language Server Protocol (LSP) for code intelligence. For JavaScript and TypeScript, Vault supports:
 
 - **vtsls** (default) — Fast TypeScript language server with excellent performance
 - **typescript-language-server** — The standard TypeScript LSP implementation
@@ -171,18 +171,18 @@ Where you might notice differences:
 
 WebStorm manages projects through `.idea` folders containing XML configuration files, framework detection, and run configurations. This model lets WebStorm remember your project settings, manage npm scripts through the UI, and persist run/debug setups.
 
-Zed takes a different approach: a project is just a folder. There's no setup wizard, no framework detection dialog, no project structure to configure.
+Vault takes a different approach: a project is just a folder. There's no setup wizard, no framework detection dialog, no project structure to configure.
 
 What this means in practice:
 
 - Run configurations aren't a thing. Define reusable commands in `tasks.json` instead. Note that your existing `.idea/` configurations won't carry over—you'll set up the ones you need fresh.
 - npm scripts live in the terminal. Run `npm run dev`, `pnpm build`, or `yarn test` directly—there's no dedicated npm panel.
-- No framework detection. Zed treats React, Angular, Vue, and vanilla JS/TS the same way.
+- No framework detection. Vault treats React, Angular, Vue, and vanilla JS/TS the same way.
 
 **How to adapt:**
 
-- Create a `.zed/settings.json` in your project root for project-specific settings
-- Define common commands in `tasks.json` (open via Command Palette: `zed: open tasks`):
+- Create a `.vault/settings.json` in your project root for project-specific settings
+- Define common commands in `tasks.json` (open via Command Palette: `vault: open tasks`):
 
 ```json
 [
@@ -212,22 +212,22 @@ What this means in practice:
 
 WebStorm's value for web development comes largely from its framework integration. React components get special treatment. Angular has dedicated tooling. Vue single-file components are fully understood. The npm tool window shows all your scripts.
 
-Zed has none of this built-in. The TypeScript language server sees your code as TypeScript—it doesn't understand that a function is a React component or that a file is an Angular service.
+Vault has none of this built-in. The TypeScript language server sees your code as TypeScript—it doesn't understand that a function is a React component or that a file is an Angular service.
 
 **How to adapt:**
 
 - Use grep and file search liberally. {#kb pane::DeploySearch} with a regex can find component definitions, route configurations, or API endpoints.
 - Rely on your language server's "find references" ({#kb:jetbrains editor::FindAllReferences}) for navigation—it works, just without framework context
-- Consider using framework-specific CLI tools (`ng`, `next`, `vite`) from Zed's terminal
+- Consider using framework-specific CLI tools (`ng`, `next`, `vite`) from Vault's terminal
 - For React, JSX/TSX syntax and TypeScript types still provide good intelligence
 
-> **Tip:** For projects with complex configurations, keep your framework's documentation handy. Zed's speed comes with less hand-holding for framework-specific features.
+> **Tip:** For projects with complex configurations, keep your framework's documentation handy. Vault's speed comes with less hand-holding for framework-specific features.
 
 ### Tool Windows vs. Docks
 
-WebStorm organizes auxiliary views into numbered tool windows. Zed uses a similar concept called "docks":
+WebStorm organizes auxiliary views into numbered tool windows. Vault uses a similar concept called "docks":
 
-| WebStorm Tool Window | Zed Equivalent | Zed Keybinding                             |
+| WebStorm Tool Window | Vault Equivalent | Vault Keybinding                             |
 | -------------------- | -------------- | ------------------------------------------ |
 | Project              | Project Panel  | {#kb:jetbrains project_panel::ToggleFocus} |
 | Git                  | Git Panel      | {#kb:jetbrains git_panel::ToggleFocus}     |
@@ -236,28 +236,28 @@ WebStorm organizes auxiliary views into numbered tool windows. Zed uses a simila
 | Problems             | Diagnostics    | {#kb:jetbrains diagnostics::Deploy}        |
 | Debug                | Debug Panel    | {#kb:jetbrains debug_panel::ToggleFocus}   |
 
-Zed has three dock positions: left, bottom, and right. Panels can be moved between docks by dragging or through settings.
+Vault has three dock positions: left, bottom, and right. Panels can be moved between docks by dragging or through settings.
 
-Note that there's no dedicated npm tool window in Zed. Use the terminal or define tasks for your common npm scripts.
+Note that there's no dedicated npm tool window in Vault. Use the terminal or define tasks for your common npm scripts.
 
 ### Debugging
 
-Both WebStorm and Zed offer integrated debugging for JavaScript and TypeScript:
+Both WebStorm and Vault offer integrated debugging for JavaScript and TypeScript:
 
-- Zed uses `vscode-js-debug` (the same debug adapter that VS Code uses)
+- Vault uses `vscode-js-debug` (the same debug adapter that VS Code uses)
 - Set breakpoints with {#kb:jetbrains editor::ToggleBreakpoint}
 - Start debugging with {#kb:jetbrains debugger::Start}
 - Step through code with {#kb:jetbrains debugger::StepInto} (step into), {#kb:jetbrains debugger::StepOver} (step over), {#kb:jetbrains debugger::StepOut} (step out)
 - Continue execution with {#kb:jetbrains debugger::Continue}
 
-Zed can debug:
+Vault can debug:
 
 - Node.js applications and scripts
 - Chrome/browser JavaScript
 - Jest, Mocha, Vitest, and other test frameworks
 - Next.js (both server and client-side)
 
-For more control, create a `.zed/debug.json` file:
+For more control, create a `.vault/debug.json` file:
 
 ```json
 [
@@ -282,17 +282,17 @@ For more control, create a `.zed/debug.json` file:
 ]
 ```
 
-Zed also recognizes `.vscode/launch.json` configurations, so existing VS Code debug setups often work out of the box.
+Vault also recognizes `.vscode/launch.json` configurations, so existing VS Code debug setups often work out of the box.
 
 ### Running Tests
 
-WebStorm has a dedicated test runner with a visual interface showing pass/fail status for each test. Zed provides test running through:
+WebStorm has a dedicated test runner with a visual interface showing pass/fail status for each test. Vault provides test running through:
 
 - **Gutter icons** — Click the play button next to test functions or describe blocks
 - **Tasks** — Define test commands in `tasks.json`
 - **Terminal** — Run `npm test`, `jest`, `vitest`, etc. directly
 
-Zed supports auto-detection for common test frameworks:
+Vault supports auto-detection for common test frameworks:
 
 - Jest
 - Mocha
@@ -307,13 +307,13 @@ The test output appears in the terminal panel. For Jest, use `--verbose` for det
 
 WebStorm has a plugin catalog covering additional language support, themes, and tool integrations.
 
-Zed's extension catalog is smaller and more focused:
+Vault's extension catalog is smaller and more focused:
 
 - Language support and syntax highlighting
 - Themes
 - Context servers
 
-Several features that require plugins in WebStorm are built into Zed:
+Several features that require plugins in WebStorm are built into Vault:
 
 - Real-time collaboration with voice chat
 - AI coding assistance
@@ -323,9 +323,9 @@ Several features that require plugins in WebStorm are built into Zed:
 - Prettier formatting
 - ESLint integration
 
-### What's Not in Zed
+### What's Not in Vault
 
-To set expectations clearly, here's what WebStorm offers that Zed doesn't have:
+To set expectations clearly, here's what WebStorm offers that Vault doesn't have:
 
 - **npm tool window** — Use the terminal or tasks instead
 - **HTTP Client** — Use tools like Postman, Insomnia, or curl
@@ -335,40 +335,40 @@ To set expectations clearly, here's what WebStorm offers that Zed doesn't have:
 - **Built-in REST client** — Use external tools or extensions
 - **Profiler integration** — Use Chrome DevTools or Node.js profiling tools
 
-## Collaboration in Zed vs. WebStorm
+## Collaboration in Vault vs. WebStorm
 
-WebStorm offers Code With Me as a separate feature for collaboration. Zed has collaboration built into the core experience.
+WebStorm offers Code With Me as a separate feature for collaboration. Vault has collaboration built into the core experience.
 
 - Open the Collab Panel in the left dock
-- Create a channel and [invite your collaborators](https://zed.dev/docs/collaboration#inviting-a-collaborator) to join
-- [Share your screen or your codebase](https://zed.dev/docs/collaboration#share-a-project) directly
+- Create a channel and [invite your collaborators](https://deepnerd.tech/docs/collaboration#inviting-a-collaborator) to join
+- [Share your screen or your codebase](https://deepnerd.tech/docs/collaboration#share-a-project) directly
 
 Once connected, you'll see each other's cursors, selections, and edits in real time. Voice chat is included. There's no need for separate tools or third-party logins.
 
-## Using AI in Zed
+## Using AI in Vault
 
-If you're used to AI assistants in WebStorm (like GitHub Copilot, JetBrains AI Assistant, or Junie), Zed offers similar capabilities with more flexibility.
+If you're used to AI assistants in WebStorm (like GitHub Copilot, JetBrains AI Assistant, or Junie), Vault offers similar capabilities with more flexibility.
 
 ### Configuring GitHub Copilot
 
-1. Open Settings with {#kb zed::OpenSettings}
+1. Open Settings with {#kb vault::OpenSettings}
 2. Navigate to **AI → Edit Predictions**
 3. Click **Configure** next to "Configure Providers"
 4. Under **GitHub Copilot**, click **Sign in to GitHub**
 
-Once signed in, just start typing. Zed will offer suggestions inline for you to accept.
+Once signed in, just start typing. Vault will offer suggestions inline for you to accept.
 
 ### Additional AI Options
 
-To use other AI models in Zed, you have several options:
+To use other AI models in Vault, you have several options:
 
-- Use Zed's hosted models, with higher rate limits. Requires [authentication](https://zed.dev/docs/authentication) and subscription to [Zed Pro](https://zed.dev/docs/ai/subscription.html).
-- Bring your own [API keys](https://zed.dev/docs/ai/llm-providers.html), no authentication needed
-- Use [external agents like Claude Agent](https://zed.dev/docs/ai/external-agents.html)
+- Use Vault's hosted models, with higher rate limits. Requires [authentication](https://deepnerd.tech/docs/authentication) and subscription to [Vault Pro](https://deepnerd.tech/docs/ai/subscription.html).
+- Bring your own [API keys](https://deepnerd.tech/docs/ai/llm-providers.html), no authentication needed
+- Use [external agents like Claude Agent](https://deepnerd.tech/docs/ai/external-agents.html)
 
 ## Advanced Config and Productivity Tweaks
 
-Zed exposes advanced settings for power users who want to fine-tune their environment.
+Vault exposes advanced settings for power users who want to fine-tune their environment.
 
 Here are a few useful tweaks for JavaScript/TypeScript developers:
 
@@ -428,12 +428,12 @@ In your `tsconfig.json`, enable strict mode for better type checking:
 
 ## Next Steps
 
-Now that you're set up, here are some resources to help you get the most out of Zed:
+Now that you're set up, here are some resources to help you get the most out of Vault:
 
 - [All Settings](../reference/all-settings.md) — Customize settings, themes, and editor behavior
 - [Key Bindings](../key-bindings.md) — Learn how to customize and extend your keymap
 - [Tasks](../tasks.md) — Set up build and run commands for your projects
-- [AI Features](../ai/overview.md) — Explore Zed's AI capabilities beyond code completion
+- [AI Features](../ai/overview.md) — Explore Vault's AI capabilities beyond code completion
 - [Collaboration](../collaboration/overview.md) — Share your projects and code together in real time
-- [JavaScript in Zed](../languages/javascript.md) — JavaScript-specific setup and configuration
-- [TypeScript in Zed](../languages/typescript.md) — TypeScript-specific setup and configuration
+- [JavaScript in Vault](../languages/javascript.md) — JavaScript-specific setup and configuration
+- [TypeScript in Vault](../languages/typescript.md) — TypeScript-specific setup and configuration

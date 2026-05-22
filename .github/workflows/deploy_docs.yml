@@ -36,7 +36,7 @@ jobs:
   deploy_docs:
     if: github.repository_owner == 'zed-industries'
     name: Build and Deploy Docs
-    runs-on: namespace-profile-16x32-ubuntu-2204
+    runs-on: ubuntu-latest
     env:
       DOCS_AMPLITUDE_API_KEY: ${{ secrets.DOCS_AMPLITUDE_API_KEY }}
       CC: clang

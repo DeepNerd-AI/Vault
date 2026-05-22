@@ -190,9 +190,9 @@
   - [AI Improvement](./ai/ai-improvement.md)
 - [Telemetry](./telemetry.md)
 
-# Developing Zed
+# Developing Vault
 
-- [Developing Zed](./development.md)
+- [Developing Vault](./development.md)
   - [macOS](./development/macos.md)
   - [Linux](./development/linux.md)
   - [Windows](./development/windows.md)
