@@ -2352,15 +2352,15 @@
           {
             "name": "llama-3.3-70b-versatile",
             "display_name": "Llama 3.3 70B Versatile",
-            "max_tokens": 128000
+            "max_tokens": 128000,
           },
           {
             "name": "llama-3.1-8b-instant",
             "display_name": "Llama 3.1 8B Instant",
-            "max_tokens": 128000
-          }
-        ]
-      }
+            "max_tokens": 128000,
+          },
+        ],
+      },
     },
     "opencode": {
       "api_url": "https://opencode.ai/zen",

@@ -35,6 +35,7 @@ jobs:
         clean: false
     - name: steps::setup_cargo_config
       run: |
+        git config --global core.longpaths true
         New-Item -ItemType Directory -Path "./../.cargo" -Force
         Copy-Item -Path "./.cargo/ci-config.toml" -Destination "./../.cargo/config.toml"
       shell: pwsh
@@ -75,6 +76,7 @@ jobs:
         clean: false
     - name: steps::setup_cargo_config
       run: |
+        git config --global core.longpaths true
         New-Item -ItemType Directory -Path "./../.cargo" -Force
         Copy-Item -Path "./.cargo/ci-config.toml" -Destination "./../.cargo/config.toml"
       shell: pwsh

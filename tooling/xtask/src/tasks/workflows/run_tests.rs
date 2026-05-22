@@ -618,7 +618,7 @@ fn run_platform_tests_impl(platform: Platform, filter_packages: bool) -> NamedJo
 
 fn build_visual_tests_binary() -> NamedJob {
     pub fn cargo_build_visual_tests() -> Step<Run> {
-        named::bash("cargo build -p zed --bin zed_visual_test_runner --features visual-tests")
+        named::bash("cargo build -p vault --bin zed_visual_test_runner --features visual-tests")
     }
 
     named::job(

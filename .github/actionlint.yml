@@ -34,6 +34,7 @@ self-hosted-runner:
     # Self Hosted Runners
     - self-mini-macos
     - self-32vcpu-windows-2022
+    - ubuntu-20.04
 
 # Disable shellcheck because it doesn't like powershell
 # This should have been triggered with initial rollout of actionlint

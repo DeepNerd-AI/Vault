@@ -203,6 +203,7 @@ pub fn cargo_install_nextest() -> Step<Use> {
 pub fn setup_cargo_config(platform: Platform) -> Step<Run> {
     match platform {
         Platform::Windows => named::pwsh(indoc::indoc! {r#"
+            git config --global core.longpaths true
             New-Item -ItemType Directory -Path "./../.cargo" -Force
             Copy-Item -Path "./.cargo/ci-config.toml" -Destination "./../.cargo/config.toml"
         "#}),
