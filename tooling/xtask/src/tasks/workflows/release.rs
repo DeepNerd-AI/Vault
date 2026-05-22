@@ -1,4 +1,4 @@
-use gh_workflow::{Event, Expression, Push, Run, Step, Use, Workflow, ctx::Context};
+use gh_workflow::{Event, Expression, Level, Permissions, Push, Run, Step, Use, Workflow, ctx::Context};
 use indoc::formatdoc;
 
 use crate::tasks::workflows::{
@@ -409,6 +409,7 @@ fn auto_release_preview(deps: &[&NamedJob]) -> (NamedJob, JobOutput) {
     let job = named::job(
         dependant_job(deps)
             .runs_on(runners::LINUX_SMALL)
+            .permissions(Permissions::default().contents(Level::Write))
             .cond(Expression::new(indoc::indoc!(
                 r#"startsWith(github.ref, 'refs/tags/v') && endsWith(github.ref, '-pre')"#
             )))
@@ -454,6 +455,7 @@ fn upload_release_assets(deps: &[&NamedJob], bundle: &ReleaseBundleJobs) -> Name
     named::job(
         dependant_job(&deps)
             .runs_on(runners::LINUX_MEDIUM)
+            .permissions(Permissions::default().contents(Level::Write))
             .add_step(download_workflow_artifacts())
             .add_step(steps::script("ls -lR ./artifacts"))
             .add_step(prep_release_artifacts())
@@ -479,6 +481,7 @@ fn create_draft_release() -> NamedJob {
     named::job(
         release_job(&[])
             .runs_on(runners::LINUX_SMALL)
+            .permissions(Permissions::default().contents(Level::Write))
             // We need to fetch more than one commit so that `script/draft-release-notes`
             // is able to diff between the current and previous tag.
             //
