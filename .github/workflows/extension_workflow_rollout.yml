@@ -85,6 +85,7 @@ jobs:
       with:
         cache: rust
         path: ~/.rustup
+      continue-on-error: true
     - name: extension_workflow_rollout::fetch_extension_repos::generate_workflow_files
       run: |
         cargo xtask workflows "$COMMIT_SHA"

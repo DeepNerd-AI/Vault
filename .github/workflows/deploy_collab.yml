@@ -30,6 +30,7 @@ jobs:
       with:
         cache: rust
         path: ~/.rustup
+      continue-on-error: true
     - name: steps::setup_linux
       run: ./script/linux
     - name: steps::download_wasi_sdk
@@ -61,6 +62,7 @@ jobs:
       with:
         cache: rust
         path: ~/.rustup
+      continue-on-error: true
     - name: steps::setup_linux
       run: ./script/linux
     - name: steps::download_wasi_sdk

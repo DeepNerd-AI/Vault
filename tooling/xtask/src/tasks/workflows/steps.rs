@@ -257,6 +257,7 @@ pub fn cache_rust_dependencies_namespace() -> Step<Use> {
     )
     .add_with(("cache", "rust"))
     .add_with(("path", "~/.rustup"))
+    .continue_on_error(true)
 }
 
 pub fn setup_sccache(platform: Platform) -> Step<Run> {
@@ -289,6 +290,7 @@ pub fn cache_nix_dependencies_namespace() -> Step<Use> {
         "a90bb5d4b27522ce881c6e98eebd7d7e6d1653f9", // v1
     )
     .add_with(("cache", "nix"))
+    .continue_on_error(true)
 }
 
 pub fn cache_nix_store_macos() -> Step<Use> {
@@ -301,6 +303,7 @@ pub fn cache_nix_store_macos() -> Step<Use> {
         "a90bb5d4b27522ce881c6e98eebd7d7e6d1653f9", // v1
     )
     .add_with(("path", "~/nix-cache"))
+    .continue_on_error(true)
 }
 
 pub fn setup_linux() -> Step<Run> {

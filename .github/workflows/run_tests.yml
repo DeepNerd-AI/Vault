@@ -141,6 +141,7 @@ jobs:
       with:
         cache: rust
         path: ~/.rustup
+      continue-on-error: true
     - name: steps::setup_pnpm
       uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2
       with:
@@ -225,6 +226,7 @@ jobs:
       with:
         cache: rust
         path: ~/.rustup
+      continue-on-error: true
     - name: steps::setup_linux
       run: ./script/linux
     - name: steps::download_wasi_sdk
@@ -260,6 +262,7 @@ jobs:
       with:
         cache: rust
         path: ~/.rustup
+      continue-on-error: true
     - name: steps::setup_sccache
       run: ./script/setup-sccache
       env:
@@ -291,6 +294,7 @@ jobs:
       with:
         cache: rust
         path: ~/.rustup
+      continue-on-error: true
     - name: steps::install_rustup_target
       run: rustup target add x86_64-apple-darwin
     - name: steps::setup_sccache
@@ -369,6 +373,7 @@ jobs:
       with:
         cache: rust
         path: ~/.rustup
+      continue-on-error: true
     - name: steps::setup_linux
       run: ./script/linux
     - name: steps::download_wasi_sdk
@@ -424,6 +429,7 @@ jobs:
       with:
         cache: rust
         path: ~/.rustup
+      continue-on-error: true
     - name: steps::setup_node
       uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
       with:
@@ -466,6 +472,7 @@ jobs:
       with:
         cache: rust
         path: ~/.rustup
+      continue-on-error: true
     - name: steps::setup_linux
       run: ./script/linux
     - name: steps::download_wasi_sdk
@@ -514,6 +521,7 @@ jobs:
       with:
         cache: rust
         path: ~/.rustup
+      continue-on-error: true
     - name: steps::setup_linux
       run: ./script/linux
     - name: steps::download_wasi_sdk
@@ -555,6 +563,7 @@ jobs:
       with:
         cache: rust
         path: ~/.rustup
+      continue-on-error: true
     - name: run_tests::build_visual_tests_binary::cargo_build_visual_tests
       run: cargo build -p zed --bin zed_visual_test_runner --features visual-tests
     - name: steps::cleanup_cargo_config
@@ -580,6 +589,7 @@ jobs:
       with:
         cache: rust
         path: ~/.rustup
+      continue-on-error: true
     - name: run_tests::check_wasm::install_nightly_wasm_toolchain
       run: rustup toolchain install nightly --component rust-src --target wasm32-unknown-unknown
     - name: steps::setup_sccache
@@ -619,6 +629,7 @@ jobs:
       with:
         cache: rust
         path: ~/.rustup
+      continue-on-error: true
     - name: run_tests::check_dependencies::install_cargo_machete
       uses: taiki-e/install-action@02cc5f8ca9f2301050c0c099055816a41ee05507
       with:
@@ -656,6 +667,7 @@ jobs:
       with:
         cache: rust
         path: ~/.rustup
+      continue-on-error: true
     - name: steps::setup_linux
       run: ./script/linux
     - name: steps::download_wasi_sdk
@@ -701,6 +713,7 @@ jobs:
       with:
         cache: rust
         path: ~/.rustup
+      continue-on-error: true
     - name: ./script/check-licenses
       run: ./script/check-licenses
     - name: ./script/generate-licenses
@@ -729,6 +742,7 @@ jobs:
       with:
         cache: rust
         path: ~/.rustup
+      continue-on-error: true
     - name: run_tests::check_scripts::check_xtask_workflows
       run: |
         cargo xtask workflows

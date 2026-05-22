@@ -26,6 +26,7 @@ jobs:
       with:
         cache: rust
         path: ~/.rustup
+      continue-on-error: true
     - name: steps::setup_node
       uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
       with:
@@ -70,6 +71,7 @@ jobs:
       with:
         cache: rust
         path: ~/.rustup
+      continue-on-error: true
     - name: steps::setup_linux
       run: ./script/linux
     - name: steps::download_wasi_sdk
@@ -163,6 +165,7 @@ jobs:
       with:
         cache: rust
         path: ~/.rustup
+      continue-on-error: true
     - name: steps::setup_sccache
       run: ./script/setup-sccache
       env:
@@ -195,6 +198,7 @@ jobs:
       with:
         cache: rust
         path: ~/.rustup
+      continue-on-error: true
     - name: steps::setup_linux
       run: ./script/linux
     - name: steps::download_wasi_sdk
@@ -261,6 +265,7 @@ jobs:
       with:
         cache: rust
         path: ~/.rustup
+      continue-on-error: true
     - name: run_tests::check_scripts::check_xtask_workflows
       run: |
         cargo xtask workflows
@@ -308,6 +313,7 @@ jobs:
       with:
         cache: rust
         path: ~/.rustup
+      continue-on-error: true
     - id: run-compliance-check
       name: release::add_compliance_steps::run_compliance_check
       run: |
@@ -684,6 +690,7 @@ jobs:
       with:
         cache: rust
         path: ~/.rustup
+      continue-on-error: true
     - id: run-compliance-check
       name: release::add_compliance_steps::run_compliance_check
       run: |

@@ -81,6 +81,7 @@ jobs:
       with:
         cache: rust
         path: ~/.rustup
+      continue-on-error: true
     - name: extension_tests::install_rust_target
       run: rustup target add wasm32-wasip2
     - id: get-package-name
@@ -135,6 +136,7 @@ jobs:
       with:
         cache: rust
         path: ~/.rustup
+      continue-on-error: true
     - name: extension_tests::check
       run: |
         mkdir -p /tmp/ext-scratch

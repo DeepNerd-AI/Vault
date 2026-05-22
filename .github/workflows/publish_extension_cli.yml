@@ -22,6 +22,7 @@ jobs:
       with:
         cache: rust
         path: ~/.rustup
+      continue-on-error: true
     - name: steps::setup_linux
       run: ./script/linux
     - name: publish_extension_cli::publish_job::build_extension_cli
@@ -52,6 +53,7 @@ jobs:
       with:
         cache: rust
         path: ~/.rustup
+      continue-on-error: true
     - id: short-sha
       name: publish_extension_cli::get_short_sha
       run: |
