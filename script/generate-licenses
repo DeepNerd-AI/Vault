@@ -15,6 +15,11 @@ fail_on_stderr() {
     return $rc
 }
 
+if [ -s "$OUTPUT_FILE" ] && [ -z "${FORCE_GENERATE_LICENSES:-}" ]; then
+    echo "License file $OUTPUT_FILE already exists and is non-empty. Skipping license generation."
+    exit 0
+fi
+
 echo -n "" >"$OUTPUT_FILE"
 
 {

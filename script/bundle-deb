@@ -57,10 +57,11 @@ case "$arch" in
         ;;
 esac
 
-archive="zed-linux-${arch}.tar.gz"
+archive="vault-linux-${arch}.tar.gz"
 tarball_path="${target_dir}/release/${archive}"
 
 # Build the bundle if it doesn't exist
+# We force script/bundle-linux to run if target file is not present
 if [ ! -f "${tarball_path}" ]; then
     echo "Bundle tarball not found at ${tarball_path}. Building now..."
     script/bundle-linux
@@ -99,28 +100,29 @@ mkdir -p "${install_prefix}"
 
 # Extract the linux tar.gz directly into our build prefix
 tar -xzf "${tarball_path}" -C "${temp_deb_dir}/usr/lib/"
-# The archive contains a single directory: zed.app (or zed-preview.app etc)
-mv "${temp_deb_dir}/usr/lib/zed${suffix}.app/"* "${install_prefix}/"
-rm -rf "${temp_deb_dir}/usr/lib/zed${suffix}.app"
+# The archive contains a single directory: vault.app (or vault-preview.app etc)
+mv "${temp_deb_dir}/usr/lib/vault${suffix}.app/"* "${install_prefix}/"
+rm -rf "${temp_deb_dir}/usr/lib/vault${suffix}.app"
 
 # Create /usr/bin symlinks
 mkdir -p "${temp_deb_dir}/usr/bin"
-ln -sf "/usr/lib/vault${suffix}/bin/zed" "${temp_deb_dir}/usr/bin/${bin_name}"
-ln -sf "/usr/lib/vault${suffix}/bin/zed" "${temp_deb_dir}/usr/bin/${legacy_bin_name}"
+ln -sf "/usr/lib/vault${suffix}/bin/vault" "${temp_deb_dir}/usr/bin/${bin_name}"
+ln -sf "/usr/lib/vault${suffix}/bin/vault" "${temp_deb_dir}/usr/bin/${legacy_bin_name}"
 
 # Copy and structure icons into /usr/share/icons
 mkdir -p "${temp_deb_dir}/usr/share/icons/hicolor/512x512/apps"
-cp "${install_prefix}/share/icons/hicolor/512x512/apps/zed.png" "${temp_deb_dir}/usr/share/icons/hicolor/512x512/apps/${bin_name}.png"
+cp "${install_prefix}/share/icons/hicolor/512x512/apps/vault.png" "${temp_deb_dir}/usr/share/icons/hicolor/512x512/apps/${bin_name}.png"
 mkdir -p "${temp_deb_dir}/usr/share/icons/hicolor/1024x1024/apps"
-cp "${install_prefix}/share/icons/hicolor/1024x1024/apps/zed.png" "${temp_deb_dir}/usr/share/icons/hicolor/1024x1024/apps/${bin_name}.png"
+cp "${install_prefix}/share/icons/hicolor/1024x1024/apps/vault.png" "${temp_deb_dir}/usr/share/icons/hicolor/1024x1024/apps/${bin_name}.png"
 
 # Setup the .desktop file inside /usr/share/applications
 mkdir -p "${temp_deb_dir}/usr/share/applications"
 cp "${install_prefix}/share/applications/${app_id}.desktop" "${temp_deb_dir}/usr/share/applications/${app_id}.desktop"
 
 # Fix the Exec and Icon entries in the desktop file to point to standard system paths
-sed -i "s|Icon=zed|Icon=/usr/share/icons/hicolor/512x512/apps/${bin_name}.png|g" "${temp_deb_dir}/usr/share/applications/${app_id}.desktop"
-sed -i "s|Exec=zed|Exec=/usr/bin/${bin_name}|g" "${temp_deb_dir}/usr/share/applications/${app_id}.desktop"
+sed -i "s|Icon=vault|Icon=/usr/share/icons/hicolor/512x512/apps/${bin_name}.png|g" "${temp_deb_dir}/usr/share/applications/${app_id}.desktop"
+sed -i "s|Exec=vault|Exec=/usr/bin/${bin_name}|g" "${temp_deb_dir}/usr/share/applications/${app_id}.desktop"
+sed -i "s|TryExec=vault|TryExec=/usr/bin/${bin_name}|g" "${temp_deb_dir}/usr/share/applications/${app_id}.desktop"
 
 # Create the control file
 mkdir -p "${temp_deb_dir}/DEBIAN"
