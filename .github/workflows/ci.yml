@@ -65,7 +65,7 @@ jobs:
         run: ./script/clippy
 
       - name: Run Cargo tests
-        run: cargo test --workspace --no-fail-fast --no-tests=warn
+        run: cargo test --workspace --no-fail-fast
 
       - name: Clean up Cargo config
         if: always()
